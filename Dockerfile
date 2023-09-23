@@ -4,7 +4,7 @@ RUN pip install --upgrade pip
 
 WORKDIR /sih
 
-COPY ./sih /sih
+COPY . /sih
 
 RUN pip install flask
 
