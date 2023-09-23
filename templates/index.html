@@ -2,10 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>kyr bot</title>
+
+    <link rel="icon" href="icon.png">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+        
+   
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-    <iframe src="https://widget.getcody.ai/9a318caa-2442-4d70-b7ee-813179202d97" style="border:0px;" name="codyai" scrolling="no" frameborder="1" marginheight="0" marginwidth="0" height="800px" width="100%" allowfullscreen></iframe>
+    <header>
+        <nav>
+            <div class="nav-bar">
+                <img class="logo-emb" src="/static/images/IndEmb.png">
+                <i class='bx bx-menu sidebarOpen' ></i>
+                <span class="logo navLogo"><a href="#">Know Your Rights</a></span>
+    
+                <div class="menu">
+                    <div class="logo-toggle">
+                        <span class="logo"><a href="#">CodingLab</a></span>
+                        <i class='bx bx-x siderbarClose'></i>
+                    </div>
+    
+                    <ul class="nav-links">
+                        <li><a href="{{url_for('home')}}">Home</a></li>
+                        <li><a href="{{url_for('legalrights')}}">Legal Rights</a></li>
+                        <li><a href="{{url_for('readdressal')}}">Readdressal</a></li>
+                        <li><a href="{{url_for('Lawandregulations')}}">Law & Regualtions</a></li>
+                        <li><a href="{{url_for('documents')}}">Documents</a></li>
+                        <li><a href="{{url_for('legalaid')}}">Legal AID</a></li>
+                        <li><a href="{{url_for('events')}}">Events</a></li>
+                    </ul>
+                </div>
+    
+                <div class="darkLight-searchBox">
+                    <div class="dark-light">
+                        <i class='bx bx-moon moon'></i>
+                        <i class='bx bx-sun sun'></i>
+                    </div>
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div>
+    {% block content %}
+    {% endblock %}
+    </div>
+    
+   
+      <script src="/static/js/sih.js"></script>
+      
+    
 </body>
+<footer class="foot">
+    <img class="foot-img" src="/static/images/IndEmb.png"><img>
+    <h1>Know Your Rights</h1>
+</footer>
 </html>
