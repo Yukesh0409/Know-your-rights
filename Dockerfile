@@ -2,12 +2,12 @@ FROM python:3-alpine3.15
  
 RUN pip install --upgrade pip
 
-WORKDIR /application
+WORKDIR /sih
 
-COPY . /application
+COPY ./sih /sih
 
 RUN pip install flask
 
-EXPOSE 5000
+EXPOSE 8080
 
 CMD python ./main.py
