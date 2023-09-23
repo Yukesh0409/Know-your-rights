@@ -1,5 +1,5 @@
 FROM python:3-alpine3.15
-
+ 
 RUN pip install --upgrade pip
 
 WORKDIR /application
