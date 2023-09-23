@@ -1,7 +1,6 @@
-FROM python:3.8.3-slim-buster
-
-COPY . .
-
-CMD pip install flask
-
-RUN ["python","main.py"]
+FROM python:3-alpine3.15
+WORKDIR /application
+COPY . /application
+RUN pip install flask
+EXPOSE 3000
+CMD python ./main.py
