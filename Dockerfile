@@ -6,4 +6,4 @@ COPY . /sih
 
 CMD pip install flask
 
-RUN ["python3","main.py"]
+RUN ["python","main.py"]
