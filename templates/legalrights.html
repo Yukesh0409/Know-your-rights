@@ -1,5 +1,94 @@
 {% extends "index.html"%}
 {% block title %}KnowYourRights - LegalRights{% endblock %}
 {% block content %}
-<h1>Legal Rights Page</h1>
+<style>
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    tr:hover {
+        background-color: #ddd;
+    }
+</style>
+<div>
+    <label for="right-type">Filter by RIGHT Type:</label>
+    <select id="right-type">
+        <option value="">All</option>
+        
+        {% for right , data in grouped_data.items() %}
+            <option value="{{ right }}">{{ right }}</option>
+        {% endfor %}
+    </select>
+    <button id="filter-button">Search</button>
+</div>
+
+<div id="filtered-data">
+    <table>
+        <thead>
+            <tr>
+                <th>Article</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to update the filtered data
+        function updateFilteredData(selectedRight) {
+            $.ajax({
+                type: "GET",
+                url: "/search",
+                data: { query: selectedRight },
+                success: function (data) {
+                    var tableBody = $("#filtered-data tbody");
+                    tableBody.empty();
+                    var currentRight = "";
+
+                    for (var i = 0; i < data.length; i++) {
+                        for (var j = 0; j < data[i].LIST_OF_ARTICLES.length; j++) {
+                            var article = data[i].LIST_OF_ARTICLES[j];
+                            var description = data[i].DESCRIPTION[j];
+
+                            // If the current "Right" is different from the previous one, create a new header row
+                            if (data[i].RIGHTS !== currentRight) {
+                                var headerRow = "<tr><th colspan='2'><center>" + data[i].RIGHTS + "</center></th></tr>";
+                                tableBody.append(headerRow);
+                                currentRight = data[i].RIGHTS;
+                            }
+
+                            var row = "<tr><td>" + article + "</td><td>" + description + "</td></tr>";
+                            tableBody.append(row);
+                        }
+                    }
+                },
+            });
+        }
+
+        updateFilteredData("");
+
+        $("#filter-button").click(function () {
+            var selectedRight = $("#right-type").val();
+            updateFilteredData(selectedRight);
+        });
+    });
+</script>
 {% endblock %}
