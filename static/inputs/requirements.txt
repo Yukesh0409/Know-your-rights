@@ -1,0 +1,4 @@
+Flask==2.3.3
+gspread==5.11.2
+pandas==2.1.1
+protobuf==4.24.3

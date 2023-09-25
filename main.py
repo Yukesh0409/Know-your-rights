@@ -1,8 +1,10 @@
-from flask import Flask,render_template,url_for, request, jsonify
+from flask import Flask,render_template,url_for, request, jsonify,redirect
 import json
 from google.oauth2 import service_account
 import gspread
 import pandas as pd
+from transformers import pipeline
+import os
 
 app = Flask("__name__")
 
@@ -38,9 +40,27 @@ def legalaid():
 def events():
     return render_template("events.html")
 
-@app.route("/documents")
+@app.route("/faq")
+def faq():
+    return render_template("faq.html")
+
+@app.route('/documents')
 def documents():
-    return render_template("Documents.html")
+    return render_template('Documents.html', summary=None)
+
+@app.route('/summarize', methods=['POST'])
+def summarize():
+    document = request.files['document']
+    # text_file = request.files['text_file']
+    if document:
+        document_text = document.read().decode("utf-8")
+        f=open('static/data/text.txt','r',errors='ignore',encoding='utf-8')
+        text=f.read()
+        summarizer = pipeline("summarization")
+        summary = summarizer(document_text, text)  
+        return render_template('Documents.html', summary=summary[0]['summary_text'])
+    return redirect(url_for('documents'))
+
 
 def convert_sheet_to_json(df):
     json_data = []
