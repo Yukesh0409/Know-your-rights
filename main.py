@@ -4,7 +4,6 @@ from google.oauth2 import service_account
 import gspread
 import pandas as pd
 from transformers import pipeline
-import os
 
 app = Flask("__name__")
 
