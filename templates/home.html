@@ -38,7 +38,7 @@
   <center>
   <h1>About the Ministry</h1>
   <hr>
-  <div class="panel-pane pane-views pane-page">
+  <div class="panel-pane-pane-views-pane-page">
   <div class="view view-page view-id-page view-display-id-block view-dom-id-0a8d64b85eaef2f3573f8a3989909907">
     <div class="view-content">         
       <div class="views-row views-row-1 views-row-odd views-row-first views-row-last">   
@@ -55,7 +55,39 @@
                     </div>      
                   </div>
                   <hr>
+                  <div class="image-container">
+                    <div class="image">
+                        <img src="https://lawmin.gov.in/sites/all/themes/landj/images/link-tab1.jpg" alt="Image 1">
+                        <figcaption>Department of Legal Affairs</figcaption>
+                    </div>
+                    <div class="image">
+                        <img src="https://lawmin.gov.in/sites/all/themes/landj/images/link-tab4.jpg" alt="Image 2">
+                        <figcaption>Legislative Department</figcaption>
+                    </div>
+                    <div class="image">
+                        <img src="https://lawmin.gov.in/sites/all/themes/landj/images/link-tab3.jpg" alt="Image 3">
+                        <figcaption>Department of Justice</figcaption>
+                    </div>
+                </div>
                   </center>
+                  <hr>
+                  <div class="container-content">
+                    <div class="image">
+                        <img src="https://judgesandlawyers.com/wp-content/uploads/2023/05/ministry-of-law-and-justice.jpg" alt="Image Description">
+                    </div>
+                    <div class="text">
+                        <center><h1 style="color: orange;">JUSTICE IS MERELY</h1></center>
+                        <center><h1 style="color: blue;">INCIDENTAL TO LAW</h1></center>
+                        <center><h1 style="color: green;">AND ORDER</h1></center>
+                        <p>Ministry of Law and Justice is the oldest limb of the Government of India dating back to 1833 when the Charter Act 1833 enacted by the British Parliament. The said Act vested for the first time legislative power in a single authority, namely the Governor General in Council. By virtue of this authority and the authority vested under him under section 22 of the Indian Councils Act 1861 the Governor General in Council enacted laws for the country from 1834 to 1920. After the commencement of the Government of India Act 1919 the legislative power was exercised by the Indian Legislature constituted
+                          thereunder. The Government of India Act 1919 was followed by the Government of India Act 1935. With the passing of the Indian Independence Act 1947 India became a Dominion and the Dominion Legislature made laws from 1947 to 1949 under the provisions of section 100 of the Government of India Act 1935 as adapted by the India (Provisional Constitution) Order 1947. Under the Constitution of India which came into force on the 26th January 1950 the legislative power is vested in Parliament.</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="container-content">
+                  <img src="static/images/home-poster.jpeg"/>
+                </div>
+                <hr>
                   <div class="faq_area section_padding_130" id="faq">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -133,7 +165,15 @@
                   .container-content {
                     display: flex;
                 align-items: center;
-            border: 1px solid #ccc; /* Add a gray border */
+            /* border: 1px solid #ccc; Add a gray border */
+            max-width: 1280px; /* Adjust the maximum width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px;
+                  }
+                  .panel-pane-pane-views-pane-page {
+                    display: flex;
+                align-items: center;
+            /* border: 1px solid #ccc; Add a gray border */
             max-width: 1280px; /* Adjust the maximum width as needed */
             margin: 0 auto; /* Center the container horizontally */
             padding: 20px;
@@ -163,23 +203,78 @@
                       font-size: 16px;
                       line-height: 1.5;
                   }
+                  #google_translate_element select.goog-te-combo {
+            background-color: #f5f5f5; /* Background color */
+            color: #333; /* Text color */
+            border: 1px solid #ccc; /* Border */
+            border-radius: 5px; /* Rounded corners */
+            padding: 10px; /* Padding */
+            font-size: 16px; /* Font size */
+            transition: all 0.3s ease; /* Smooth transition */
+        }
+
+        /* Style the "Powered by Google Translate" text */
+        #google_translate_element div span {
+            font-size: 14px; /* Font size */
+            color: #777; /* Text color */
+            transition: color 0.3s ease; /* Smooth color transition */
+        }
+
+        /* Style the Google Translate logo */
+        #google_translate_element img {
+            width: 50px; /* Logo width */
+            height: 20px; /* Logo height */
+            vertical-align: middle;
+            padding-right: 5px; /* Spacing to the text */
+            transition: transform 0.3s ease; /* Smooth scale transition */
+        }
+
+        /* Hover effect */
+        #google_translate_element:hover select.goog-te-combo {
+            background-color: #e0e0e0; /* Background color on hover */
+            transform: scale(1.05); /* Slightly scale on hover */
+        }
+
+        #google_translate_element:hover div span {
+            color: #555; /* Text color on hover */
+        }
+
+        #google_translate_element:hover img {
+            transform: scale(1.2); /* Scale up on hover */
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Style each image container */
+        .image-container .image {
+            text-align: center;
+        }
+
+        /* Style each image */
+        .image-container img {
+            width: 100%; /* Adjust the width as needed */
+            cursor: pointer; /* Show a pointer cursor on hover */
+            transition: transform 0.2s, box-shadow 0.2s; /* Smooth transition for scaling and shadow */
+        }
+
+        /* Style the image title */
+        .image-container figcaption {
+            font-size: 20px; /* Adjust the font size */
+            margin-top: 10px; /* Spacing between the image and the title */
+            font-weight: bold;
+        }
+
+        /* Add a shadow effect on hover */
+        .image-container img:hover {
+            transform: scale(1.05); /* Scale up on hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect on hover */
+        }
               </style>
-              <hr>
-              
-                <div class="container-content">
-                  <div class="image">
-                      <img src="https://newjobrecruitment.com/wp-content/uploads/2021/03/govt-of-india-logo-1.jpg" alt="Image Description">
-                  </div>
-                  <div class="text">
-                      <center><h1 style="color: orange;">JUSTICE IS MERELY</h1></center>
-                      <center><h1 style="color: blue;">INCIDENTAL TO LAW</h1></center>
-                      <center><h1 style="color: green;">AND ORDER</h1></center>
-                      <p>Ministry of Law and Justice is the oldest limb of the Government of India dating back to 1833 when the Charter Act 1833 enacted by the British Parliament. The said Act vested for the first time legislative power in a single authority, namely the Governor General in Council. By virtue of this authority and the authority vested under him under section 22 of the Indian Councils Act 1861 the Governor General in Council enacted laws for the country from 1834 to 1920. After the commencement of the Government of India Act 1919 the legislative power was exercised by the Indian Legislature constituted
-                        thereunder. The Government of India Act 1919 was followed by the Government of India Act 1935. With the passing of the Indian Independence Act 1947 India became a Dominion and the Dominion Legislature made laws from 1947 to 1949 under the provisions of section 100 of the Government of India Act 1935 as adapted by the India (Provisional Constitution) Order 1947. Under the Constitution of India which came into force on the 26th January 1950 the legislative power is vested in Parliament.</p>
-                  </div>
-              </div>
-              <hr>
               <center>
+                <br>
                 <div id="google_translate_element"></div></center>
                 <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                 <script>

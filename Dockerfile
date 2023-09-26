@@ -4,12 +4,19 @@ WORKDIR /sih
 
 COPY . /sih
 
+RUN pip install --upgrade pip
 
-RUN pip3 install transformers
+RUN pip install --upgrade watchdog
 
-RUN pip install tensorflow --user
+RUN pip install flask
 
-RUN pip install -r requirements.txt
+RUN pip install gspread
+
+RUN pip install pandas
+
+RUN pip install protobuf
+
+RUN pip install python-docx
 
 EXPOSE 8080
 

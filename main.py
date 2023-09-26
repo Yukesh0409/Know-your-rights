@@ -4,7 +4,6 @@ from google.oauth2 import service_account
 import gspread
 import pandas as pd
 from notmain import notmainBlueprint
-# from transformers import pipeline
 from docx import Document
 from werkzeug.utils import secure_filename
 

@@ -1,6 +1,7 @@
 {% extends "index.html"%}
 {% block title %}KnowYourRights - Documents{% endblock %}
 {% block content %}
+<center>
 <h1>Document Summarizer</h1>
     <form method="POST" action="/summarize" enctype="multipart/form-data">
         <input type="file" name="document">
@@ -10,7 +11,9 @@
     <h2>Summary:</h2>
     <p>{{ summary }}</p>
     {% endif %}
+<br>
     <div id="google_translate_element"></div>
+</center>
                 <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                 <script>
                     function googleTranslateElementInit(){
