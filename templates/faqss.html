@@ -1,0 +1,60 @@
+<h1>Legal Information FAQS</h1>
+
+    <div>
+        <label for="law-type">Filter by Law Type:</label>
+        <select id="law-type">
+            <option value="">All</option>
+            
+            {% for law , data in grouped_data_faqs.items() %}
+                <option value="{{ law }}">{{ law }}</option>
+            {% endfor %}
+        </select>
+        <button id="filter-button">Search</button>
+    </div>
+    
+    <div id="filtered-data">
+        
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Function to update the filtered data
+            function updateFilteredData(selectedLaw) {
+                $.ajax({
+                    type: "GET",
+                    url: "/faq/search_faqs",
+                    data: { query: selectedLaw },
+                    success: function (data) {
+                        var html = "";
+                        // html += "<h2>" + selectedLaw + "</h2>";
+                        for (var i = 0; i < data.length; i++) {
+
+                            if(i==0)
+                            {
+                                html += "<h2>" + data[i].LAW + "</h2>";
+                            }
+                            if(i!=0)
+                            {
+                                if(data[i].LAW!=data[i-1].LAW)
+                                    html += "<h2>" + data[i].LAW + "</h2>";
+                            }
+                            
+                            for (var j = 0; j < data[i].QUESTIONS.length; j++) {
+                                html += "<p><strong>Question:</strong> " + data[i].QUESTIONS[j] + "</p>";
+                                html += "<p><strong>Answer:</strong> " + data[i].ANSWERS[j] + "</p>";
+                            }
+                        }
+                        $("#filtered-data").html(html);
+                    },
+                });
+            }
+
+            updateFilteredData("");
+
+            $("#filter-button").click(function () {
+                var selectedLaw = $("#law-type").val();
+                updateFilteredData(selectedLaw);
+            });
+        });
+    </script>

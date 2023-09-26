@@ -34,6 +34,8 @@
 
   </div>
   <br>
+  <hr>
+  <center>
   <h1>About the Ministry</h1>
   <hr>
   <div class="panel-pane pane-views pane-page">
@@ -52,6 +54,8 @@
                       </div>                   
                     </div>      
                   </div>
+                  <hr>
+                  </center>
                   <div class="faq_area section_padding_130" id="faq">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -119,13 +123,64 @@
                                 <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
                                     <i class="lni-emoji-sad"></i>
                                     <p class="mb-0 px-2">Can't find your answers?</p>
-                                    <a href="#"> See more questions related</a>
+                                    <a href="{{url_for('notmain.index_faqs')}}"> See more questions related</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="google_translate_element"></div>
+                <style>
+                  .container-content {
+                    display: flex;
+                align-items: center;
+            border: 1px solid #ccc; /* Add a gray border */
+            max-width: 1280px; /* Adjust the maximum width as needed */
+            margin: 0 auto; /* Center the container horizontally */
+            padding: 20px;
+                  }
+          
+                  .image {
+                      flex: 1;
+                      padding: 20px;
+                  }
+          
+                  .image img {
+                      max-width: 100%;
+                      height: auto;
+                  }
+          
+                  .text {
+                      flex: 2;
+                      padding: 20px;
+                  }
+          
+                  .text h1 {
+                      font-size: 24px;
+                      margin-bottom: 10px;
+                  }
+          
+                  .text p {
+                      font-size: 16px;
+                      line-height: 1.5;
+                  }
+              </style>
+              <hr>
+              
+                <div class="container-content">
+                  <div class="image">
+                      <img src="https://newjobrecruitment.com/wp-content/uploads/2021/03/govt-of-india-logo-1.jpg" alt="Image Description">
+                  </div>
+                  <div class="text">
+                      <center><h1 style="color: orange;">JUSTICE IS MERELY</h1></center>
+                      <center><h1 style="color: blue;">INCIDENTAL TO LAW</h1></center>
+                      <center><h1 style="color: green;">AND ORDER</h1></center>
+                      <p>Ministry of Law and Justice is the oldest limb of the Government of India dating back to 1833 when the Charter Act 1833 enacted by the British Parliament. The said Act vested for the first time legislative power in a single authority, namely the Governor General in Council. By virtue of this authority and the authority vested under him under section 22 of the Indian Councils Act 1861 the Governor General in Council enacted laws for the country from 1834 to 1920. After the commencement of the Government of India Act 1919 the legislative power was exercised by the Indian Legislature constituted
+                        thereunder. The Government of India Act 1919 was followed by the Government of India Act 1935. With the passing of the Indian Independence Act 1947 India became a Dominion and the Dominion Legislature made laws from 1947 to 1949 under the provisions of section 100 of the Government of India Act 1935 as adapted by the India (Provisional Constitution) Order 1947. Under the Constitution of India which came into force on the 26th January 1950 the legislative power is vested in Parliament.</p>
+                  </div>
+              </div>
+              <hr>
+              <center>
+                <div id="google_translate_element"></div></center>
                 <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
                 <script>
                     function googleTranslateElementInit(){
