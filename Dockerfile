@@ -1,10 +1,11 @@
-FROM pypy:3
+FROM python:3.11
 
 WORKDIR /sih
 
 COPY . /sih
 
-RUN pip install transformers
+
+RUN pip3 install transformers
 
 RUN pip install tensorflow --user
 
