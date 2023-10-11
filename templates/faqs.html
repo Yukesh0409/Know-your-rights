@@ -1,66 +1,99 @@
-{% extends "index.html"%}
+{% extends "index.html" %}
 {% block title %} KYR - FAQs {% endblock %}
 {% block content %}
-<h1>Legal Information FAQS</h1>
-
-    <div>
-        <label for="law-type">Filter by Law Type:</label>
-        <select id="law-type">
-            <option value="">All</option>
-            
-            {% for law , data in grouped_data_faqs.items() %}
-                <option value="{{ law }}">{{ law }}</option>
-            {% endfor %}
-        </select>
-        <button id="filter-button">Search</button>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div class="faq_area section_padding_130" id="faq">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-lg-6">
+                <!-- Section Heading-->
+                <div class="section_heading text-center wow fadeInUp" data-wow-delay="0.2s" style="visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;">
+                    <h3><span>Legal </span> Information FAQ'S</h3> <br> <br>
+                    <div>
+                        <label for="law-type">Filter by Law Type:</label>
+                        <select id="law-type">
+                            <option value="">All</option>
+                            {% for law, data in grouped_data_faqs.items() %}
+                            <option value="{{ law }}">{{ law }}</option>
+                            {% endfor %}
+                        </select>
+                        <button id="filter-button">Search</button>
+                        <br>
+                        <br>
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                    </div>
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <!-- FAQ Area-->
+            <div class="col-12 col-sm-10 col-lg-8">
+                <div class="accordion faq-accordian" id="faqAccordion">
+                    <div id="filtered-data"></div>
+                </div>
+                <!-- Support Button-->
+                <div class="support-button text-center d-flex align-items-center justify-content-center mt-4 wow fadeInUp" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInUp;">
+                    <i class="lni-emoji-sad"></i>
+                    <p class="mb-0 px-2">Can't find your answers?</p>
+                    <a href="#"> Contact us</a>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <div id="filtered-data">
-        
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            // Function to update the filtered data
-            function updateFilteredData(selectedLaw) {
-                $.ajax({
-                    type: "GET",
-                    url: "/faq/search_faqs",
-                    data: { query: selectedLaw },
-                    success: function (data) {
-                        var html = "";
-                        // html += "<h2>" + selectedLaw + "</h2>";
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Function to update the filtered data
+        function updateFilteredData(selectedLaw) {
+            $.ajax({
+                type: "GET",
+                url: "/faq/search_faqs",
+                data: { query: selectedLaw },
+                success: function (data) {
+                    var html = "";
+                    for (var i = 0; i < data.length; i++) {
                         for (var i = 0; i < data.length; i++) {
-
-                            if(i==0)
-                            {
+                            if (i == 0) {
                                 html += "<h2>" + data[i].LAW + "</h2>";
                             }
-                            if(i!=0)
-                            {
-                                if(data[i].LAW!=data[i-1].LAW)
+                            if (i != 0) {
+                                if (data[i].LAW != data[i - 1].LAW)
                                     html += "<h2>" + data[i].LAW + "</h2>";
                             }
-                            
                             for (var j = 0; j < data[i].QUESTIONS.length; j++) {
-                                html += "<p><strong>Question:</strong> " + data[i].QUESTIONS[j] + "</p>";
-                                html += "<p><strong>Answer:</strong> " + data[i].ANSWERS[j] + "</p>";
+                                // Generate unique IDs for each question and answer
+                                var questionId = 'Collapse_' + i + '_' + j;
+                                var answerId = 'Answer_' + i + '_' + j;
+
+                                // Create the HTML for the question and answer
+                                html += "<div class='card border-0 wow fadeInUp' data-wow-delay='0.2s' style='visibility: visible; animation-delay: 0.2s; animation-name: fadeInUp;'>";
+                                html += "<div class='card-header' id='Heading_" + questionId + "'>";
+                                html += "<h6 class='mb-0 collapsed' data-toggle='collapse' data-target='#" + questionId + "' aria-expanded='false' aria-controls='" + answerId + "'>" + data[i].QUESTIONS[j] + "<span class='lni-chevron-down'></span></h6>";
+                                html += "</div>";
+                                html += "<div class='collapse' id='" + questionId + "' aria-labelledby='Heading_" + questionId + "' data-parent='#faqAccordion'>";
+                                html += "<div class='card-body' id='" + answerId + "'>" + data[i].ANSWERS[j] + "</div>";
+                                html += "</div>";
+                                html += "</div>";
                             }
                         }
-                        $("#filtered-data").html(html);
-                    },
-                });
-            }
-
-            updateFilteredData("");
-
-            $("#filter-button").click(function () {
-                var selectedLaw = $("#law-type").val();
-                updateFilteredData(selectedLaw);
+                    }
+                    $("#filtered-data").html(html);
+                },
             });
+        }
+
+        updateFilteredData("");
+
+        $("#filter-button").click(function () {
+            console.log('heelo')
+            var selectedLaw = $("#law-type").val();
+            updateFilteredData(selectedLaw);
         });
-    </script>
-
-
+    });
+</script>
 {% endblock %}
