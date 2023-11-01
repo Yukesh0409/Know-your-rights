@@ -1,9 +1,8 @@
-{% extends "index.html"%}
+{% extends "index.html" %}
 {% block title %}KnowYourRights - LegalRights{% endblock %}
 {% block content %}
 <style>
     select {
-
         /* styling */
         background-color: white;
         border: thin solid blue;
@@ -12,63 +11,58 @@
         font: inherit;
         line-height: 1.5em;
         padding: 0.5em 3.5em 0.5em 1em;
-      
         /* reset */
-      
-        margin: 0;      
+        margin: 0;
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         -webkit-appearance: none;
         -moz-appearance: none;
-      }
-    
-      select.classic {
+    }
+
+    select.classic {
         background-image:
-          linear-gradient(45deg, transparent 50%, blue 50%),
-          linear-gradient(135deg, blue 50%, transparent 50%),
-          linear-gradient(to right, skyblue, skyblue);
+            linear-gradient(45deg, transparent 50%, blue 50%),
+            linear-gradient(135deg, blue 50%, transparent 50%),
+            linear-gradient(to right, skyblue, skyblue);
         background-position:
-          calc(100% - 20px) calc(1em + 2px),
-          calc(100% - 15px) calc(1em + 2px),
-          100% 0;
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            100% 0;
         background-size:
-          5px 5px,
-          5px 5px,
-          2.5em 2.5em;
+            5px 5px,
+            5px 5px,
+            2.5em 2.5em;
         background-repeat: no-repeat;
-      }
-      
-      select.classic:focus {
+    }
+
+    select.classic:focus {
         background-image:
-          linear-gradient(45deg, white 50%, transparent 50%),
-          linear-gradient(135deg, transparent 50%, white 50%),
-          linear-gradient(to right, gray, gray);
+            linear-gradient(45deg, white 50%, transparent 50%),
+            linear-gradient(135deg, transparent 50%, white 50%),
+            linear-gradient(to right, gray, gray);
         background-position:
-          calc(100% - 15px) 1em,
-          calc(100% - 20px) 1em,
-          100% 0;
+            calc(100% - 15px) 1em,
+            calc(100% - 20px) 1em,
+            100% 0;
         background-size:
-          5px 5px,
-          5px 5px,
-          2.5em 2.5em;
+            5px 5px,
+            5px 5px,
+            2.5em 2.5em;
         background-repeat: no-repeat;
         border-color: grey;
         outline: 0;
-      }
-      
-      
-      
-      select:-moz-focusring {
+    }
+
+    select:-moz-focusring {
         color: transparent;
         text-shadow: 0 0 0 #000;
-      }
+    }
 
-      .table {
+    .table {
         border-collapse: collapse;
         transform: translateX(45px);
-        max-width:95%;
-        
+        max-width: 95%;
     }
 
     th, td {
@@ -79,17 +73,15 @@
 
     th {
         background-color: #f2f2f2;
-    }   
+    }
 </style>
 <br>
 <div class="filter1">
     <label for="right-type">Filter by RIGHT Type:</label>
-    
     <select id="right-type" class="classic">
         <option value="">All</option>
-        
-        {% for right , data in grouped_data.items() %}
-            <option value="{{ right }}">{{ right }}</option>
+        {% for right, data in grouped_data.items() %}
+        <option value="{{ right }}">{{ right }}</option>
         {% endfor %}
     </select>
     <button id="filter-button" class="btn btn-outline-dark">Search</button>
@@ -107,13 +99,6 @@
         <tbody></tbody>
     </table>
 </div>
-<button
-        type="button"
-        class="btn btn-danger btn-floating btn-lg"
-        id="btn-back-to-top"
-        >
-  <i class="fas fa-arrow-up"></i>
-</button>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
@@ -156,40 +141,17 @@
             updateFilteredData(selectedRight);
         });
     });
-    //Get the button
-let mybutton = document.getElementById("btn-back-to-top");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function () {
-  scrollFunction();
-};
-
-function scrollFunction() {
-  if (
-    document.body.scrollTop > 20 ||
-    document.documentElement.scrollTop > 20
-  ) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-// When the user clicks on the button, scroll to the top of the document
-mybutton.addEventListener("click", backToTop);
-
-function backToTop() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
 </script>
-<div id="google_translate_element"></div>
-    <script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <script>
-        function googleTranslateElementInit(){
-            new google.translate.TranslateElement(
-                {pageLanguage: 'en'},
-                'google_translate_element'
-            );
-        }
-    </script>
+<center>
+    <div id="google_translate_element"></div>
+</center>
+<script src="http://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script>
+    function googleTranslateElementInit(){
+        new google.translate.TranslateElement(
+            {pageLanguage: 'en'},
+            'google_translate_element'
+        );
+    }
+</script>
 {% endblock %}

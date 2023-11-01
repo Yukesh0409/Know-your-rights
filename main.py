@@ -4,12 +4,15 @@ from google.oauth2 import service_account
 import gspread
 import pandas as pd
 from notmain import notmainBlueprint
+from acts import actspage
 from docx import Document
 from werkzeug.utils import secure_filename
 
 
 app = Flask("__name__")
 app.register_blueprint(notmainBlueprint,url_prefix = "/faq")
+app.register_blueprint(actspage, url_prefix= "/law-and-regulations")
+
 credentials = service_account.Credentials.from_service_account_file(
     "static/data/indian-legal-information-d6444bb36676.json",
     scopes=['https://www.googleapis.com/auth/spreadsheets.readonly']
@@ -30,9 +33,9 @@ def home():
 def readdressal():
     return render_template("readdressal.html")
 
-@app.route("/law-and-regulations")
-def Lawandregulations():
-    return render_template("Lawandregulations.html")
+# @app.route("/law-and-regulations")
+# def Lawandregulations():
+#     return redirect(url_for("law-and-regulation"))
 
 @app.route("/legal-aid")
 def legalaid():

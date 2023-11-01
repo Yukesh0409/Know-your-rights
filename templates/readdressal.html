@@ -1,5 +1,162 @@
 {% extends "index.html"%}
 {% block title %}KnowYourRights - Readdressal{% endblock %}
 {% block content %}
-<h1>Readdressal Page</h1>
+<div class="container">
+    <h2>File a Complaint</h2>
+    <p>If you have any concerns or complaints, please use the form below to get in touch with us.</p>
+    <form action="submit_complaint.php" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="email">Email:</label>
+        <input type="text" id="email" name="email" required>
+
+        <label for="contact-number">Phone number:</label>
+        <input type="text" id="phoneno" name="phoneno" required>
+
+        <label for="aadhar">Aadhar number:</label>
+        <input type="text" id="aadhar" name="aadhar" required>
+
+        <label for="law-type">Select the Type of Law:</label>
+        <select id="law-type" name="law-type" required>
+            <option value="Civil Law">Civil Law</option>
+            <option value="Criminal Law">Criminal Law</option>
+            <option value="Family Law">Family Law</option>
+            <option value="Property Law">Property Law</option>
+        </select>
+
+        <label for="complaint">Complaint:</label>
+        <textarea id="complaint" name="complaint" required></textarea>
+
+        <label for="attachment">Attach a File:</label>
+        <input type="file" id="attachment" name="attachment">
+    
+        <center>
+        <input type="submit" value="Submit Complaint">
+        </center>
+    </form>
+
+    <div class="contact-info">
+        <h2>Contact Information</h2>
+        <p>If you need immediate assistance, you can also contact us via:</p>
+        <p>Email: <a href="mailto:contact@lawministry.gov.in">contact@lawministry.gov.in</a></p>
+        <p>Phone: +91 123 456 7890</p>
+    </div>
+</div>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+}
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+h1 {
+    font-size: 24px;
+}
+p {
+    font-size: 16px;
+}
+.contact-info {
+    margin-top: 20px;
+    border-top: 1px solid #ccc;
+    padding-top: 20px;
+}
+form {
+    margin-top: 20px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+textarea {
+    height: 150px;
+}
+input[type="submit"] {
+    background-color: #207abe;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+input[type="submit"]:hover {
+    background-color: #145485;
+}
+/* Style for the select element */
+select#law-type {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    appearance: none; /* Remove default arrow icon */
+    background: #fff; /* Dropdown background color */
+    color: #333; /* Dropdown text color */
+}
+
+/* Style for select when it's focused (clicked) */
+select#law-type:focus {
+    border-color: #007bff; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add a subtle box shadow on focus */
+}
+/* Style for the file attachment input */
+input[type="file"]#attachment {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: 2px dashed #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center;
+    cursor: pointer;
+}
+
+/* Style for the file input text */
+input[type="file"]#attachment::before {
+    content: "Drag & Drop files here or click to browse";
+    display: block;
+    color: #777;
+    font-size: 14px;
+}
+
+/* Hide the default file input button text */
+input[type="file"]#attachment::-webkit-file-upload-button {
+    visibility: hidden;
+}
+
+/* Style for the "Browse" button */
+input[type="file"]#attachment::after {
+    content: "Browse";
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Style for the "Browse" button on hover */
+input[type="file"]#attachment::after:hover {
+    background-color: #0056b3;
+}
+
+</style>
 {% endblock %}

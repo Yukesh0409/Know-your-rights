@@ -1,5 +1,190 @@
 {% extends "index.html"%}
 {% block title %}KnowYourRights - LawandRegulations{% endblock %}
 {% block content %}
-<h1>Law and Regulations Page</h1>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <style>
+        /* Style the filter input fields and labels */
+        label {
+            font-weight: bold;
+        }
+
+        #act-number-input, #ministry-select {
+            margin: 10px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: orange;
+        }
+        ::placeholder{
+            color: orange;
+        }
+        /* Style the buttons */
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #prev-page-btn, #next-page-btn {
+            background-color: orange;
+        }
+
+        /* Style the table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        /* Style the details rows */
+        .details-row {
+            background-color: #f5f5f5;
+        }
+
+        /* Style the pagination controls */
+        .pagination {
+            margin-top: 20px;
+        }
+
+        /* Style the page info text */
+        #page-info {
+            font-weight: bold;
+            margin: 0 10px;
+        }
+        .details-row {
+        background-color: white;
+    }
+    .short-title{
+        color: black;   
+    }
+    </style>
+    
+    <label for="act-number" style="color: orange;">Filter by Act Number:</label>
+    <input type="text" id="act-number-input" placeholder="Enter Act Number">
+
+    <label for="ministry" style="color: orange;">Filter by Ministry:</label>
+    <select id="ministry-select">
+        <option value="">All</option>
+        {% for ministry in ministries %}
+            <option>{{ ministry }}</option>
+        {% endfor %}
+    </select>
+    
+    <table class="table" id="data-table">
+        <thead>
+            <tr>
+                <th><b>Act Name</b></th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prev-page-btn">Previous Page</button>
+        <span id="page-info">Page 1 of 1</span>
+        <button id="next-page-btn">Next Page</button>
+    </div>
+
+
+    <script>
+        var data = [];
+        var currentPage = 1;
+        var totalPages = 1;
+
+        function displayDetails(shortTitle, detailsDiv) {
+            const details = data.find(row => row[2] === shortTitle);
+            if (details) {
+                detailsDiv.html(`<p><b style="color:blue">Act Number</b>: ${details[0]}</p>
+                                     <p><b style="color:blue">Act ID</b>: ${details[1]}</p>
+                                     <p><b style="color:blue">Enactment Date</b>: ${details[5]}</p>
+                                     <p><b style="color:blue">Long Title</b>: ${details[3]}</p>
+                                     <p><b style="color:blue">Ministry</b>: ${details[4]}</p>
+                                     <p><b style="color:blue">PDF Download</b>: <a href="${details[6]}" target="_blank"><img src="https://w7.pngwing.com/pngs/491/951/png-transparent-red-adobe-pdf-logo-pdf-computer-icons-adobe-acrobat-encapsulated-postscript-pdf-miscellaneous-angle-text.png" width="50px" height="40px"/></a></p>`);
+                detailsDiv.parent().parent().show();
+            }
+        }
+
+        function hideAllDetails() {
+            $('.details-row').hide();
+            $('.details').html('');
+        }
+
+        $('#act-number-input').on('input', function() {
+            hideAllDetails();
+            currentPage = 1; 
+            loadData();
+        });
+
+        $('#ministry-select').change(function() {
+            hideAllDetails();
+            currentPage = 1; 
+            loadData();
+        });
+
+        $('#prev-page-btn').click(function() {
+            if (currentPage > 1) {
+                currentPage--;
+                loadData();
+            }
+        });
+
+        $('#next-page-btn').click(function() {
+            if (currentPage < totalPages) {
+                currentPage++;
+                loadData();
+            }
+        });
+
+        $('#data-table tbody').on('click', '.short-title', function () {
+            const shortTitle = $(this).text();
+            const detailsDiv = $(this).closest('tr').next('.details-row').find('.details');
+
+            hideAllDetails();
+            displayDetails(shortTitle, detailsDiv);
+        });
+
+        function loadData() {
+            const selectedMinistry = $('#ministry-select').val();
+            const actNumberFilter = $('#act-number-input').val(); 
+            $.get('/law-and-regulations/data', { ministry: selectedMinistry, act_number: actNumberFilter, page: currentPage }, function(response) {
+                data = response.data;
+                totalPages = response.total_pages;
+
+                $('#page-info').text(`Page ${currentPage} of ${totalPages}`);
+
+                const tableBody = $('#data-table tbody');
+                tableBody.empty();
+                data.forEach(row => {
+                    tableBody.append(`<tr><td class="short-title"><b>${row[2]}</b></td></tr>
+                                    <tr class="details-row" style="display: none;">
+                                        <td colspan="1">
+                                            <div class="details"></div>
+                                        </td>
+                                    </tr>`);
+                });
+            });
+        }
+
+        loadData();
+    </script>
+    
+
 {% endblock %}
