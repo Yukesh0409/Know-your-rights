@@ -1,5 +1,8 @@
-sonar-scanner \
-  -Dsonar.projectKey=kyr-noml \
-  -Dsonar.sources=. \
-  -Dsonar.host.url=http://52.66.83.114:9000 \
-  -Dsonar.token=sqp_a668e7faa523a7ecf921373ceb66fdd5638e735e
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+ 
+  <groupId>org.codehaus.mojo</groupId>
+  <artifactId>my-project</artifactId>
+  <version>1.0</version>
+</project>
